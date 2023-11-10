@@ -29,6 +29,11 @@ public class Inventory {
     private String placeStorage;
     private LocalDateTime modifiedAt;
 
-    @OneToOne
+    @OneToOne(mappedBy = "inventory")
     private Product product;
+
+    public void setProduct(Product product) {
+        this.product = product;
+        product.setInventory(this);
+    }
 }

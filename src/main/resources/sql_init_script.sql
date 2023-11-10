@@ -15,7 +15,7 @@ CREATE TABLE product
     id           BIGSERIAL PRIMARY KEY,
     name         VARCHAR(128) NOT NULL,
     description  TEXT,
-    sku          VARCHAR(64)  NOT NULL,
+    sku          VARCHAR(64)  UNIQUE NOT NULL,
     price        DECIMAL(12, 2),
 
     created_at   TIMESTAMP,
@@ -32,15 +32,15 @@ CREATE TABLE product
 -- One to Many
 CREATE TABLE product_category
 (
-    id   BIGSERIAL PRIMARY KEY,
-    name VARCHAR(64) NOT NULL,
+    id   SERIAL PRIMARY KEY,
+    name VARCHAR(64) UNIQUE NOT NULL,
     description TEXT
 );
 
 -- One to one
 CREATE TABLE product_inventory
 (
-    id            BIGSERIAL PRIMARY KEY,
+    id            SERIAL PRIMARY KEY,
     quantity      INT,
     place_storage VARCHAR(64),
     modified_at    TIMESTAMP
@@ -49,8 +49,8 @@ CREATE TABLE product_inventory
 -- One to Many
 CREATE TABLE discount
 (
-    id               BIGSERIAL PRIMARY KEY,
-    name             VARCHAR(64),
+    id               SERIAL PRIMARY KEY,
+    name             VARCHAR(64) UNIQUE NOT NULL,
     description             TEXT,
     discount_percent INT,
     active           BOOLEAN,
