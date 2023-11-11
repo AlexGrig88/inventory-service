@@ -24,10 +24,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString(exclude = "products")
-@EqualsAndHashCode(of = "name")
+@EqualsAndHashCode(of = "name", callSuper = false)
 @Entity
 @Table(name = "discount")
-public class Discount {
+public class Discount extends AuditableEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,10 +42,7 @@ public class Discount {
 
     private Boolean active;
 
-    private LocalDateTime createdAt;
-    private LocalDateTime modifiedAt;
-
-    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "discount", fetch = FetchType.LAZY)
     List<Product> products = new ArrayList<>();
 
     public void addProduct(Product product) {

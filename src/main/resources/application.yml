@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/electronicstore_inventory_db
+    url: jdbc:postgresql://localhost:5432/electronicstore_inventorydb
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
@@ -11,4 +11,6 @@ spring:
         default_schema: inventory_schema
         format_sql: true
         show_sql: true
+        hbm2ddl:
+          auto: create
 
